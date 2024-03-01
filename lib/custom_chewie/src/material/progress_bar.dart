@@ -59,8 +59,9 @@ class _ProgressBarState extends State<ProgressBar> {
   }
 
   Future<void> _loadImage() async {
-    final ByteData data = await rootBundle
-        .load(widget.progressBarIndicatorImagePath ?? 'assets/android.png');
+    final ByteData data = await rootBundle.load(
+        widget.progressBarIndicatorImagePath ??
+            'packages/chewie_with_danmaku/assets/android.png');
     final bytes = Uint8List.view(data.buffer);
     final ui.Codec codec = await ui.instantiateImageCodec(bytes);
     final ui.FrameInfo frameInfo = await codec.getNextFrame();

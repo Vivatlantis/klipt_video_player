@@ -798,6 +798,7 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
             'assets/bullet_setting_white.png',
             width: 30,
             height: 30,
+            package: 'chewie_with_danmaku',
           )),
     );
   }

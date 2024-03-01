@@ -30,6 +30,7 @@ class _ToggleBulletButtonState extends State<ToggleBulletButton> {
               : 'assets/bullet_off.png',
           height: 30,
           width: 30,
+          package: 'chewie_with_danmaku',
         );
       }),
       onTap: () {

@@ -42,9 +42,9 @@ class FlutterDanmakuConfig {
 
   /// 获取弹幕场景基于子组件高度的偏移量。为了居中展示
   static double getAreaOfChildOffsetY({Size? textSize}) {
-    Size _textSize =
+    Size textSize0 =
         textSize ?? FlutterDanmakuUtils.getDanmakuBulletSizeByText('s');
 
-    return (FlutterDanmakuConfig.areaSize.height % _textSize.height) / 2;
+    return (FlutterDanmakuConfig.areaSize.height % textSize0.height) / 2;
   }
 }
