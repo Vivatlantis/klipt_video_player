@@ -3,9 +3,10 @@ import 'dart:math';
 
 import 'package:battery_plus/battery_plus.dart';
 import 'package:chewie_with_danmaku/application_controller.dart';
-import 'package:chewie_with_danmaku/src/flutter_danmaku_area.dart';
-import 'package:chewie_with_danmaku/src/flutter_danmaku_bullet.dart';
-import 'package:chewie_with_danmaku/src/flutter_danmaku_controller.dart';
+import 'package:chewie_with_danmaku/danmaku.dart';
+import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_area.dart';
+import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_bullet.dart';
+import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_controller.dart';
 import 'package:chewie_with_danmaku/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay/flutter_overlay.dart';
@@ -18,11 +19,11 @@ import 'package:side_sheet/side_sheet.dart';
 import 'package:video_player/video_player.dart';
 import 'package:volume_controller/volume_controller.dart';
 
-import '../../../danmaku_bullet/bullet_color_selection.dart';
-import '../../../danmaku_bullet/bullet_input_bar.dart';
-import '../../../danmaku_bullet/bullet_input_box.dart';
-import '../../../danmaku_bullet/bullet_setting.dart';
-import '../../../danmaku_bullet/reusable_component.dart';
+import '../../../danmaku_bullet_widget//bullet_color_selection.dart';
+import '../../../danmaku_bullet_widget/bullet_input_bar.dart';
+import '../../../danmaku_bullet_widget/bullet_input_box.dart';
+import '../../../danmaku_bullet_widget/bullet_setting.dart';
+import '../../../danmaku_bullet_widget/reusable_component.dart';
 import '../../chewie.dart';
 import '../helpers/utils.dart';
 import '../notifiers/index.dart';
@@ -37,6 +38,8 @@ class CustomMaterialControls extends StatefulWidget {
   final Function(FlutterDanmakuController) onControllerInitialized;
   final double? aspectRatio;
   final String? videoTitle;
+  final List<DanmakuData>? danmakuListIn;
+  final Color? primaryColor;
   const CustomMaterialControls({
     Key? key,
     required this.onControllerInitialized,
@@ -46,6 +49,8 @@ class CustomMaterialControls extends StatefulWidget {
     this.aspectRatio,
     this.videoTitle,
     this.progressBarIndicatorImagePath,
+    this.danmakuListIn,
+    this.primaryColor,
   }) : super(key: key);
 
   @override
@@ -60,12 +65,7 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
   late FocusNode textFocusNode;
   late TextEditingController textEditingController;
   late FlutterDanmakuController flutterDanmakuController;
-  List<BarrageData> jsonList = [];
   ApplicationController controller = Get.find<ApplicationController>();
-
-  Future<void> getDanmakuListFromJSON() async {
-    /// Function for your method to get danmaku from server
-  }
 
   double get danmakuAreaHeight =>
       MediaQuery.of(context).size.width / (widget.aspectRatio ?? 16 / 9);
@@ -125,9 +125,14 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
   // We know that _chewieController is set in didChangeDependencies
   ChewieController get chewieController => _chewieController!;
 
+  List<DanmakuData> danmakuList = <DanmakuData>[];
   @override
   void initState() {
     super.initState();
+    if (widget.danmakuListIn != null) {
+      danmakuList.assignAll(widget.danmakuListIn!);
+    }
+
     VolumeController().listener((volume) {});
     _streamController = StreamController.broadcast();
     notifier = Provider.of<PlayerNotifier>(context, listen: false);
@@ -157,7 +162,6 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
       flutterDanmakuController
           .changeShowArea(Get.find<BulletController>().displayAreaValue.value);
     });
-    getDanmakuListFromJSON();
   }
 
   @override
@@ -277,6 +281,9 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
               !notifier.hideStuff)
             GestureDetector(
               onTap: () {
+                if (widget.danmakuListIn != null) {
+                  danmakuList.assignAll(widget.danmakuListIn!);
+                }
                 chewieController.videoPlayerController.play();
               },
               child: Center(
@@ -785,7 +792,9 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
         });
         SideSheet.right(
             body: BulletSetting(
-                flutterDanmakuController: flutterDanmakuController),
+              flutterDanmakuController: flutterDanmakuController,
+              primaryColor: widget.primaryColor,
+            ),
             sheetColor: Colors.transparent,
             width: MediaQuery.of(context).size.width * 0.45,
             context: context);
@@ -1079,7 +1088,14 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
     }
     if (!mounted) return;
 
-    /// Load your danmaku data in advance here.
+    /// The video is in loop, reload danmaku
+    if (videoPlayerController.value.position.inSeconds >=
+        videoPlayerController.value.duration.inSeconds) {
+      if (widget.danmakuListIn != null) {
+        danmakuList.assignAll(widget.danmakuListIn!);
+      }
+    }
+
     setState(() {
       _latestValue = videoPlayerController.value;
       _currentPos = _latestValue.position;
@@ -1091,30 +1107,32 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
       if (_latestValue.isPlaying && flutterDanmakuController.isPause) {
         flutterDanmakuController.play();
       }
-
-      /// Add danmaku to display
-      currentTime = _currentPos.inSeconds.toInt();
-      for (int i = 0; i < jsonList.length; i++) {
-        final double danmakuTime = jsonList.elementAt(i).time! / 1000;
-        String content = jsonList.elementAt(i).content!;
-        double timeDifference = danmakuTime - currentTime - 1;
-        if (danmakuTime < 1.2 || timeDifference >= 0 && timeDifference <= 1) {
-          int offsetMS = -(timeDifference * 1000).toInt();
-          flutterDanmakuController.addDanmaku(content,
-              color:
-                  stringToColor(jsonList.elementAt(i).color ?? "(0xFFFFFFFF)"),
-              offsetMS: offsetMS,
-              position: jsonList.elementAt(i).position! == 2
-                  ? FlutterDanmakuBulletPosition.bottom
-                  : FlutterDanmakuBulletPosition.any,
-              bulletType: jsonList.elementAt(i).position! == 2
-                  ? FlutterDanmakuBulletType.fixed
-                  : FlutterDanmakuBulletType.scroll);
-          jsonList.removeAt(i);
-          i--;
-        }
-      }
+      addDanmakuToDisplay();
     });
+  }
+
+  void addDanmakuToDisplay() {
+    currentTime = _currentPos.inSeconds.toInt();
+    for (int i = 0; i < danmakuList.length; i++) {
+      final double danmakuTime = danmakuList.elementAt(i).time / 1000;
+      String content = danmakuList.elementAt(i).content;
+      double timeDifference = danmakuTime - currentTime - 1;
+      if (danmakuTime < 1.2 || timeDifference >= 0 && timeDifference <= 1) {
+        int offsetMS = -(timeDifference * 1000).toInt();
+        flutterDanmakuController.addDanmaku(content,
+            color:
+                stringToColor(danmakuList.elementAt(i).color ?? "(0xFFFFFFFF)"),
+            offsetMS: offsetMS,
+            position: danmakuList.elementAt(i).position == 2
+                ? FlutterDanmakuBulletPosition.bottom
+                : FlutterDanmakuBulletPosition.any,
+            bulletType: danmakuList.elementAt(i).position == 2
+                ? FlutterDanmakuBulletType.fixed
+                : FlutterDanmakuBulletType.scroll);
+        danmakuList.removeAt(i);
+        i--;
+      }
+    }
   }
 
   double durationToDouble(Duration d) {
@@ -1334,55 +1352,5 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
         ],
       );
     }
-  }
-}
-
-/// class for barrage data. change it base on your need
-class BarrageData {
-  int? id;
-  int? createdAt;
-  int? updatedAt;
-  String? userToken;
-  int? postId;
-  String? content;
-  String? color;
-  int? position;
-  int? time;
-
-  BarrageData(
-      {this.id,
-      this.createdAt,
-      this.updatedAt,
-      this.userToken,
-      this.postId,
-      this.content,
-      this.color,
-      this.time,
-      this.position});
-
-  BarrageData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    userToken = json['user_token'];
-    postId = json['post_id'];
-    content = json['content'];
-    color = json['color'];
-    time = json['time'];
-    position = json['position'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['user_token'] = userToken;
-    data['post_id'] = postId;
-    data['content'] = content;
-    data['color'] = color;
-    data['time'] = time;
-    data['position'] = position;
-    return data;
   }
 }

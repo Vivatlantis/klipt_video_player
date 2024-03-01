@@ -1,5 +1,5 @@
 // 弹幕主场景
-import 'package:chewie_with_danmaku/src/flutter_danmaku_controller.dart';
+import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';

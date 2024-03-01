@@ -1,22 +1,26 @@
 import 'package:chewie_with_danmaku/application_controller.dart';
-import 'package:chewie_with_danmaku/danmaku_bullet/bullet_setting.dart';
+import 'package:chewie_with_danmaku/danmaku.dart';
+import 'package:chewie_with_danmaku/danmaku_bullet_widget/bullet_setting.dart';
+import 'package:chewie_with_danmaku/danmaku_bullet_widget/reusable_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:video_player/video_player.dart';
 
-import '../../danmaku_bullet/reusable_component.dart';
 import '../chewie.dart';
 
-class VideoView extends StatefulWidget {
+class ChewieWithDanmaku extends StatefulWidget {
   /// The URL that contains the video to be played
+  /// It will support any format that is supported in chewie
   final String url;
 
   /// If video will start playing upon opening the page/using the widget
+  /// Default to false
   final bool autoPlay;
 
   /// If the video will auto loop itself
+  /// Default to false.
   final bool looping;
 
   /// Specify the aspect ratio of the given video
@@ -24,18 +28,29 @@ class VideoView extends StatefulWidget {
 
   /// A list of button that can be added to the right of the screen
   /// when the video is in full screen mode
+  /// Default to none.
   final List<Widget>? rightButtonList;
 
   /// The color used on progress bar
+  /// Default to active: pinkAccent; background: grey
   final ChewieProgressColors? progressColors;
 
   /// The title of the video that will display on top of video
   final String? videoTitle;
 
   /// The image path to change the video progress bar icon
+  /// Default icon will be an Android
   final String? progressBarIndicatorImagePath;
 
-  const VideoView(
+  /// The danmaku list to be displayed in the video.
+  /// See danmaku.dart for a detailed structure of danmaku required to be passed in.
+  final List<DanmakuData>? danmakuList;
+
+  /// The primary color for bullet settings, loading circle, .etc
+  /// Default to Colors.pinkAccent.
+  final Color? primaryColor;
+
+  const ChewieWithDanmaku(
     this.url, {
     Key? key,
     this.autoPlay = false,
@@ -45,6 +60,8 @@ class VideoView extends StatefulWidget {
     this.progressColors,
     this.videoTitle,
     this.progressBarIndicatorImagePath,
+    this.danmakuList,
+    this.primaryColor,
   }) : super(key: key);
 
   static Widget createWithDependencies(
@@ -56,13 +73,13 @@ class VideoView extends StatefulWidget {
     ChewieProgressColors? progressColors,
     String? videoTitle,
     String? progressBarIndicatorImagePath,
+    List<DanmakuData>? danmakuList,
+    Color? primaryColor,
   }) {
-    // Initialize dependencies here
+    // **IMPORTANT** Initialize dependencies
     Get.put(ApplicationController());
     Get.put(BulletController());
-
-    // Return an instance of VideoView
-    return VideoView(
+    return ChewieWithDanmaku(
       url,
       autoPlay: autoPlay,
       looping: looping,
@@ -71,14 +88,16 @@ class VideoView extends StatefulWidget {
       progressColors: progressColors,
       videoTitle: videoTitle,
       progressBarIndicatorImagePath: progressBarIndicatorImagePath,
+      danmakuList: danmakuList,
+      primaryColor: primaryColor,
     );
   }
 
   @override
-  _VideoViewState createState() => _VideoViewState();
+  _ChewieWithDanmakuState createState() => _ChewieWithDanmakuState();
 }
 
-class _VideoViewState extends State<VideoView> {
+class _ChewieWithDanmakuState extends State<ChewieWithDanmaku> {
   ApplicationController controller = Get.find<ApplicationController>();
 
   /// Default video progress bar color
@@ -110,6 +129,10 @@ class _VideoViewState extends State<VideoView> {
             Get.find<ApplicationController>().setController,
         bottomGradient: blackLinearGradient(),
         aspectRatio: widget.aspectRatio,
+        danmakuListIn: widget.danmakuList == null
+            ? null
+            : List.unmodifiable(widget.danmakuList!),
+        primaryColor: widget.primaryColor,
       ),
       materialProgressColors: widget.progressColors ?? _progressColors,
     );
@@ -127,5 +150,11 @@ class _VideoViewState extends State<VideoView> {
         controller: controller.chewieController,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:chewie_with_danmaku/danmaku_bullet/bullet_color_selection.dart';
+import 'package:chewie_with_danmaku/danmaku_bullet_widget/bullet_color_selection.dart';
 import 'package:chewie_with_danmaku/textstyles.dart';
 import 'package:flutter/material.dart';
 

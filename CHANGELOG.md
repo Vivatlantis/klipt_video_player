@@ -19,3 +19,11 @@ Updated the call of getx controller to make the widget ready to use
 1.0.3
 
 Added assets file to be displayed as default
+
+1.1.0
+
+Added support for user to pass in an external danmaku list and display it while playing the video
+
+Add a parameter for user to change primary indicator color of the video player
+
+Updated readme file

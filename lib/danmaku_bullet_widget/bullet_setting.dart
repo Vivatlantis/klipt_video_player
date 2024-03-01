@@ -1,4 +1,4 @@
-import 'package:chewie_with_danmaku/src/flutter_danmaku_controller.dart';
+import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_controller.dart';
 import 'package:chewie_with_danmaku/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,10 +40,11 @@ class BulletController extends GetxController {
 
 class BulletSetting extends StatefulWidget {
   final FlutterDanmakuController flutterDanmakuController;
-
+  final Color? primaryColor;
   const BulletSetting({
     required this.flutterDanmakuController,
     Key? key,
+    this.primaryColor,
   }) : super(key: key);
 
   @override
@@ -95,8 +96,9 @@ class _BulletSettingState extends State<BulletSetting> {
               ),
               child: Slider(
                 value: controller.bulletSpeedValue.value,
-                activeColor: Colors.pinkAccent,
-                inactiveColor: Colors.pinkAccent.withOpacity(0.5),
+                activeColor: widget.primaryColor ?? Colors.pinkAccent,
+                inactiveColor:
+                    widget.primaryColor ?? Colors.pinkAccent.withOpacity(0.5),
                 min: 0.5,
                 max: 2.0,
                 divisions: 3,
@@ -132,8 +134,9 @@ class _BulletSettingState extends State<BulletSetting> {
               ),
               child: Slider(
                 value: controller.fontSizeValue.value,
-                activeColor: Colors.pinkAccent,
-                inactiveColor: Colors.pinkAccent.withOpacity(0.5),
+                activeColor: widget.primaryColor ?? Colors.pinkAccent,
+                inactiveColor:
+                    widget.primaryColor ?? Colors.pinkAccent.withOpacity(0.5),
                 min: 10,
                 max: 20,
                 onChanged: (newValue) {
@@ -169,8 +172,9 @@ class _BulletSettingState extends State<BulletSetting> {
               ),
               child: Slider(
                 value: controller.displayAreaValue.value,
-                activeColor: Colors.pinkAccent,
-                inactiveColor: Colors.pinkAccent.withOpacity(0.5),
+                activeColor: widget.primaryColor ?? Colors.pinkAccent,
+                inactiveColor:
+                    widget.primaryColor ?? Colors.pinkAccent.withOpacity(0.5),
                 min: 0.25,
                 max: 1.0,
                 divisions: 3,
@@ -207,8 +211,9 @@ class _BulletSettingState extends State<BulletSetting> {
               ),
               child: Slider(
                 value: controller.opacityValue.value,
-                activeColor: Colors.pinkAccent,
-                inactiveColor: Colors.pinkAccent.withOpacity(0.5),
+                activeColor: widget.primaryColor ?? Colors.pinkAccent,
+                inactiveColor:
+                    widget.primaryColor ?? Colors.pinkAccent.withOpacity(0.5),
                 min: 0,
                 max: 100,
                 onChanged: (newValue) {
