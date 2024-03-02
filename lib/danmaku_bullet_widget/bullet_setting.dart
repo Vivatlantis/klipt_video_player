@@ -1,5 +1,5 @@
-import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_controller.dart';
-import 'package:chewie_with_danmaku/textstyles.dart';
+import 'package:klipt_video_player/flutter_danmaku/flutter_danmaku_controller.dart';
+import 'package:klipt_video_player/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:chewie_with_danmaku/danmaku_bullet_widget/bullet_color_selection.dart';
-import 'package:chewie_with_danmaku/textstyles.dart';
+import 'package:klipt_video_player/danmaku_bullet_widget/bullet_color_selection.dart';
+import 'package:klipt_video_player/textstyles.dart';
 import 'package:flutter/material.dart';
 
 ///弹幕输入框，悬浮在键盘上方

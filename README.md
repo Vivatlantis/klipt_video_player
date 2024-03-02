@@ -1,8 +1,8 @@
-# chewie_with_danmaku
+# klipt_video_player
 A Flutter video player with multiple gesture support, based on Chewie and added danmaku (bullet/barrage) function inside it.
 
-github: https://github.com/RBmint/chewie_with_danmaku
-
+GitHub: https://github.com/Vivatlantis/klipt_video_player
+Author: Royce Zhai
 # Description
 Everyone loves [chewie], a video player with highly customizable interface. While watching the video,
 many would like to see or send a danmaku/bullet/barrage (they are referring to the same thing!), and 
@@ -40,7 +40,7 @@ widget as below (there are some additional parameters to be explored):
 this widget to make it functional.**
 
 ```dart
-import 'package:chewie_with_danmaku/chewie_with_danmaku.dart';
+import 'package:klipt_video_player/klipt_video_player.dart';
 @override
 Widget build(BuildContext context) {
   return Scaffold(

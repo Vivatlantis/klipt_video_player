@@ -1,7 +1,7 @@
-import 'package:chewie_with_danmaku/application_controller.dart';
-import 'package:chewie_with_danmaku/danmaku.dart';
-import 'package:chewie_with_danmaku/danmaku_bullet_widget/bullet_setting.dart';
-import 'package:chewie_with_danmaku/danmaku_bullet_widget/reusable_component.dart';
+import 'package:klipt_video_player/application_controller.dart';
+import 'package:klipt_video_player/danmaku.dart';
+import 'package:klipt_video_player/danmaku_bullet_widget/bullet_setting.dart';
+import 'package:klipt_video_player/danmaku_bullet_widget/reusable_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -10,7 +10,7 @@ import 'package:video_player/video_player.dart';
 
 import '../chewie.dart';
 
-class ChewieWithDanmaku extends StatefulWidget {
+class KliptVideoView extends StatefulWidget {
   /// The URL that contains the video to be played
   /// It will support any format that is supported in chewie
   final String url;
@@ -50,7 +50,7 @@ class ChewieWithDanmaku extends StatefulWidget {
   /// Default to Colors.pinkAccent.
   final Color? primaryColor;
 
-  const ChewieWithDanmaku(
+  const KliptVideoView(
     this.url, {
     Key? key,
     this.autoPlay = false,
@@ -79,7 +79,7 @@ class ChewieWithDanmaku extends StatefulWidget {
     // **IMPORTANT** Initialize dependencies
     Get.put(ApplicationController());
     Get.put(BulletController());
-    return ChewieWithDanmaku(
+    return KliptVideoView(
       url,
       autoPlay: autoPlay,
       looping: looping,
@@ -94,10 +94,10 @@ class ChewieWithDanmaku extends StatefulWidget {
   }
 
   @override
-  _ChewieWithDanmakuState createState() => _ChewieWithDanmakuState();
+  _KliptVideoViewState createState() => _KliptVideoViewState();
 }
 
-class _ChewieWithDanmakuState extends State<ChewieWithDanmaku> {
+class _KliptVideoViewState extends State<KliptVideoView> {
   ApplicationController controller = Get.find<ApplicationController>();
 
   /// Default video progress bar color

@@ -27,3 +27,7 @@ Added support for user to pass in an external danmaku list and display it while 
 Add a parameter for user to change primary indicator color of the video player
 
 Updated readme file
+
+1.1.1
+
+Changed app name

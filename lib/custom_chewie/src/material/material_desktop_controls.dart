@@ -1,7 +1,7 @@
 // import 'dart:async';
 //
-// import 'package:chewie_with_danmaku/custom_chewie/src/material/widgets/options_dialog.dart';
-// import 'package:chewie_with_danmaku/custom_chewie/src/material/widgets/playback_speed_dialog.dart';
+// import 'package:klipt_video_player/custom_chewie/src/material/widgets/options_dialog.dart';
+// import 'package:klipt_video_player/custom_chewie/src/material/widgets/playback_speed_dialog.dart';
 // import 'package:flutter/material.dart';
 //
 // import '../animated_play_pause.dart';

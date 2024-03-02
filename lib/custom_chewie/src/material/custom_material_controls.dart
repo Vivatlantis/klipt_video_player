@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:battery_plus/battery_plus.dart';
-import 'package:chewie_with_danmaku/application_controller.dart';
-import 'package:chewie_with_danmaku/danmaku.dart';
-import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_area.dart';
-import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_bullet.dart';
-import 'package:chewie_with_danmaku/flutter_danmaku/flutter_danmaku_controller.dart';
-import 'package:chewie_with_danmaku/textstyles.dart';
+import 'package:klipt_video_player/application_controller.dart';
+import 'package:klipt_video_player/danmaku.dart';
+import 'package:klipt_video_player/flutter_danmaku/flutter_danmaku_area.dart';
+import 'package:klipt_video_player/flutter_danmaku/flutter_danmaku_bullet.dart';
+import 'package:klipt_video_player/flutter_danmaku/flutter_danmaku_controller.dart';
+import 'package:klipt_video_player/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay/flutter_overlay.dart';
 import 'package:fluttertoast/fluttertoast.dart';

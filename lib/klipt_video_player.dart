@@ -19,7 +19,7 @@ export 'custom_chewie/src/models/subtitle_model.dart';
 export 'custom_chewie/src/notifiers/index.dart';
 export 'custom_chewie/src/notifiers/player_notifier.dart';
 export 'custom_chewie/src/player_with_controls.dart';
-export 'custom_chewie/src/chewie_with_danmaku.dart';
+export 'custom_chewie/src/klipt_video_player.dart';
 export 'custom_chewie/src/volume_brightness_toast.dart';
 export 'danmaku_bullet_widget/bullet_button.dart';
 export 'danmaku_bullet_widget/bullet_color_selection.dart';

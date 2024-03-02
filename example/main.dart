@@ -1,5 +1,5 @@
-import 'package:chewie_with_danmaku/chewie_with_danmaku.dart';
-import 'package:chewie_with_danmaku/custom_chewie/src/chewie_with_danmaku.dart';
+import 'package:klipt_video_player/klipt_video_player.dart';
+import 'package:klipt_video_player/custom_chewie/src/klipt_video_player.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Center(
         /// MUST use createWithDependencies
-        child: ChewieWithDanmaku.createWithDependencies(
+        child: KliptVideoView.createWithDependencies(
           "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
           autoPlay: true,
           looping: true,
