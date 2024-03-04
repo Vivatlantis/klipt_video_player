@@ -29,11 +29,11 @@ The video player support gestures including:
 
 
 ## Preview
+Buttons in bottom bar: play/pause; open/close danmaku; danmaku settings; open keyboard to send danmaku; adjust video playback speed; expand/collapse
+
 ![sc1](/assets/sc_landscape.jpg)
 
 ![sc1](/assets/sc_setting.jpg)
-
-<img src="/assets/sc_portrait.jpg" width="450" height="800"/>
 
 
 ## Installation
@@ -95,8 +95,10 @@ This project is developed based on:
 
 # TODO LIST:
 
-- Add screenshots/preview of the player
 - Fix bugs e.g. setState() called during build .etc
+
 - Listen for feedback and add more parameters to the interface
-- Learn to write a more detailed documentation
-- Add a demo page
+
+  
+
+  
