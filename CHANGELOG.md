@@ -30,4 +30,8 @@ Updated readme file
 
 1.1.1
 
-Changed app name
+Changed widget name
+
+1.1.2
+
+Updated readme to match new widget name
