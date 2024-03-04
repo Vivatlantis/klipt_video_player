@@ -29,13 +29,11 @@ The video player support gestures including:
 
 
 ## Preview
-```html
-<img src="/assets/sc_portrait.jpg" width="450" height="800" />
-```
-
 ![sc1](/assets/sc_landscape.jpg)
 
 ![sc1](/assets/sc_setting.jpg)
+
+<img src="/assets/sc_portrait.jpg" width="450" height="800"/>
 
 
 ## Installation
