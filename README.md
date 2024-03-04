@@ -29,7 +29,7 @@ The video player support gestures including:
 
 
 ## Preview
-![sc1](/assets/sc_portrait.jpg)
+![sc1](/assets/sc_portrait.jpg =450x800)
 
 ![sc1](/assets/sc_landscape.jpg)
 
