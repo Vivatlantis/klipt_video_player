@@ -29,9 +29,11 @@ The video player support gestures including:
 
 
 ## Preview
+![sc1](/assets/sc_portrait.jpg)
+
 ![sc1](/assets/sc_landscape.jpg)
 
-![ss](/Users/RBmint/Documents/chewie_with_danmaku/assets/sc_portrait.jpg)
+![sc1](/assets/sc_setting.jpg)
 
 
 ## Installation
