@@ -6,7 +6,7 @@ GitHub: https://github.com/Vivatlantis/klipt_video_player
 
 Author: Royce Zhai
 
-### Description
+## Description
 
 Everyone loves [chewie](https://pub.dev/packages/chewie), a video player with highly customizable interface. While watching the video, many would like to see or send a danmaku/bullet/barrage (they refer to the same thing!), and klipt_video_player makes everything possible at once, with integrated gesture control to enhance user experience.
 
@@ -27,15 +27,15 @@ The video player support gestures including:
 - Swipe up/down in right half of screen to adjust video volume (based on system volume);
 - There's also a lock button to block all gestures!
 
-### Preview
-Buttons in bottom bar: play/pause; open/close danmaku; danmaku settings; open keyboard to send danmaku; adjust video playback speed; expand/collapse
+## Preview
+Buttons in bottom bar: 1. play/pause; 2. open/close danmaku; 3. danmaku settings; 4. open keyboard to send danmaku; 5. adjust video playback speed; 6. expand/collapse
 
-![sc1](/assets/sc_landscape.jpg)
+![sc1](https://raw.githubusercontent.com/Vivatlantis/klipt_video_player/master/assets/sc_landscape.jpg)
 
-![sc1](/assets/sc_setting.jpg)
+![sc2](https://raw.githubusercontent.com/Vivatlantis/klipt_video_player/master/assets/sc_setting.jpg)
 
 
-### Installation
+## Installation
 
 In your `[pubspec.yaml]` file within your Flutter Project add `[klipt_video_player]` under dependencies:
 
@@ -44,7 +44,7 @@ dependencies:
   klipt_video_player: <latest_version>
 ```
 
-### Using the player
+## Using the player
 
 After adding the dependency in your pubspec.yaml file, you can access the player by simply calling the widget as below (there are some additional parameters to be explored):
 
