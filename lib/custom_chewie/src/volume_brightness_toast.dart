@@ -78,8 +78,7 @@ class _FSliderToastState extends State<_FSliderToast> {
                 child: LinearProgressIndicator(
                   value: value,
                   backgroundColor: Colors.black,
-                  valueColor: const AlwaysStoppedAnimation(
-                      Colors.blue),
+                  valueColor: const AlwaysStoppedAnimation(Colors.blue),
                 ),
               ),
             ],

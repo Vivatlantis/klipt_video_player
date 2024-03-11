@@ -53,3 +53,9 @@ Initial version of chewie_with_danmaku
 ### 1.1.3
 
 - Updated readme with preview images
+
+
+### 1.1.4
+
+- Updated dependency to newest version
+- Formatted code

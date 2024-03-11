@@ -87,7 +87,8 @@ class _BulletColorSelectionState extends State<BulletColorSelection> {
                         border: Border.all(color: Colors.white, width: 0.8),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.check, size: 12, color: Colors.white),
+                      child: const Icon(Icons.check,
+                          size: 12, color: Colors.white),
                     ),
                   ),
                 )

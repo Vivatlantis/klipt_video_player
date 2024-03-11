@@ -245,11 +245,8 @@ class CustomMaterialControlsState extends State<CustomMaterialControls>
             )
           else
             controller.isVideoFullScreen.value
-                ? WillPopScope(
-                    onWillPop: () {
-                      return Future.value(true);
-                    },
-                    child: Container(color: Colors.transparent))
+                ? PopScope(
+                    canPop: true, child: Container(color: Colors.transparent))
                 : Container(
                     color: Colors.transparent,
                   ),

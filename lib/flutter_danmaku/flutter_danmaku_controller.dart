@@ -20,8 +20,10 @@ class AddBulletResBody {
 
 class FlutterDanmakuController {
   final FlutterDanmakuTrackManager _trackManager = FlutterDanmakuTrackManager();
-  final FlutterDanmakuBulletManager _bulletManager = FlutterDanmakuBulletManager();
-  final FlutterDanmakuRenderManager _renderManager = FlutterDanmakuRenderManager();
+  final FlutterDanmakuBulletManager _bulletManager =
+      FlutterDanmakuBulletManager();
+  final FlutterDanmakuRenderManager _renderManager =
+      FlutterDanmakuRenderManager();
 
   List<FlutterDanmakuTrack> get tracks => _trackManager.tracks;
 
